@@ -372,12 +372,20 @@ hydra -L users.txt -p "SuperS3cure1337#" rdp://192.168.247.202
    
 ** HTTP
 
-   gobuster directory mode
+   directory mode
    #+begin_example
-gobuster dir -t20 --wordlist /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -u http://192.168.216.121 -x aspx
+feroxbuster -u 'http://$IP' -w /usr/share/wordlists/dirb/big.txt
    #+end_example
 
-   gobuster vhost mode
+   #+begin_example
+gobuster dir -t20 --wordlist /usr/share/wordlists/seclists/directory-list-2.3-medium.txt -u http://192.168.216.121 -x aspx
+   #+end_example
+
+   vhost mode
+   #+begin_example
+ffuf -w /usr/share/wordlists/SecLists/Discovery/DNS/subdomains-top1million-110000.txt -u http://k2.thm/ -H "Host:FUZZ.k2.thm" -fw 811
+   #+end_example
+   
    #+begin_example
 gobuster vhost --wordlist /home/kali/repos/projects/SecLists/Discovery/DNS/subdomains-top1million-110000.txt -u http://oscp.exam:8000 --exclude-length 334
    #+end_example
